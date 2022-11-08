@@ -1,3 +1,4 @@
+import { useState} from 'react'
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -6,16 +7,18 @@ import Tab from 'react-bootstrap/Tab';
 import AddGoal from './AddGoal';
 
 function LeftInterface() {
+   const [ goals, setGoals ] = useState([])
+   console.log("GOALS IN LEFT INT: ", goals)
   const goal = [
     <ul>
-      <li>'Be debt-free in X years.'</li>
-      <li>'Make bigger payments on outstanding debt'</li>
-      <li>'Increase income'</li>
-      <li>'Get a higher paying job'</li>
-      <li>'Learn to code'</li>
-      <li>'Sign up for a bootcamp'</li>
-      <li>'Decide on a bootcamp'</li>
-      <li>'Research coding bootcamps'</li>
+      <li>Be debt-free in X yearss</li>
+      <li>Make bigger payments on outstanding debt</li>
+      <li>Increase income</li>
+      <li>Get a higher paying job</li>
+      <li>Learn to code</li>
+      <li>Sign up for a bootcamp</li>
+      <li>Decide on a bootcamp</li>
+      <li>Research coding bootcamps</li>
     </ul>
   ]
 
@@ -48,7 +51,8 @@ function LeftInterface() {
         </Row>
       </Tab.Container>
       
-      <AddGoal />
+      {/* possible to pass props down <AddGoal goalText={props} /> */}
+      <AddGoal goals={goals} setGoals={setGoals} />
 
     </div>
   );

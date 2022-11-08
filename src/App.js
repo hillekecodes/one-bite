@@ -4,10 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
+    // <React router >
+    
     <div className="App">
       <Navigation />
+      {/* <Context> */}
       <LeftInterface />
+      {/* </Context> */}
     </div>
+    // </ React router >
   );
 }
 
