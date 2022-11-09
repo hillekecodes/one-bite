@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function AddGoal(goals, setGoals) {
-    const [ show, setShow ] = useState(false); // const show = false
+const AddGoal = (props) => {
+    const [ show, setShow ] = useState(false);
     const [ step, setStep ] = useState(1)
     const [ modalGoal, setModalGoal ] = useState('')
-    const [ doIt, canYouDoIt ] = useState(false)
+    const [ doIt, setDoIt ] = useState(false)
+    const [ wasNoClicked, setWasNoClicked] = useState(false)
+    
+    useEffect(() => {
+        if(doIt) {
+            setShow(false)
+            setStep(1)
+            setModalGoal('');
+        }
+    }, [doIt]) 
 
-
-    console.log("STEP? ", step)
 
     const handleSave = () => {
-      // Figure out how to spread an array in state
-      // console.log("goals 1", goals)
-      // const newGoals = goals
-      // console.log("newGoals", newGoals.push(modalGoal))
-      setGoals(newGoals)
+      console.log(modalGoal);
+      props.setGoals({
+        ...props.goals,
+        [modalGoal]: [],
+      })
       setStep(2)
     }
 
-    const handleNextClosestStep = () => {
-      // setStep(3)
-    }
-
-    const handleStepOneClose = () => {
-      // Look into setting step back to 1 after exiting modal
-      // setStep(1)
-      setShow(false)
-    }
 
     const renderStep = () => {
       if (step === 1) {
@@ -44,7 +42,7 @@ function AddGoal(goals, setGoals) {
             autoFocus
           />
            <Modal.Footer>
-        <Button variant="secondary" onClick={handleStepOneClose}>
+        <Button variant="secondary" onClick={(() => setShow(false))}>
           Close
         </Button>
         <Button variant="primary" onClick={handleSave}>
@@ -54,35 +52,27 @@ function AddGoal(goals, setGoals) {
         </Form.Group>
         )
       }
-      if (step === 2) {
-        return (
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>{ goals.length ? goals[0] : '' }</Form.Label>
-          {/* goals.map(x => {
-            <Goal>
-          }) */}
-          <Form.Label>Can you do this now?</Form.Label>
-           <Modal.Footer>
-        <Button variant="secondary" onClick={handleNextClosestStep}>
-          No
-        </Button>
-        <Button variant="primary" onClick={() => canYouDoIt(true)}>
-          Yes
-        </Button>
-      </Modal.Footer>
-        </Form.Group>
-        )
+//ELSE...
+      if (step === 2 && !doIt) {
+        if(wasNoClicked){
+            // most important next step stuff here
+        } else{
+            return (
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>{ modalGoal }</Form.Label>
+                    <Form.Label>Can you do this now?</Form.Label>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setWasNoClicked(true)}>
+                            No
+                        </Button>
+                        <Button variant="primary" onClick={() => setDoIt(true)}>
+                            Yes
+                        </Button>
+                    </Modal.Footer>
+                </Form.Group>
+                )
+            }
       }
-      // if (step === 3) {
-      //   return (
-      // //  Do it   // 
-      //   )
-      // }
-      // if (step === 4) {
-      //   return (
-      // //  No    // 
-      //   )
-      // }
     }
   
     return (
@@ -101,6 +91,7 @@ function AddGoal(goals, setGoals) {
           </Modal.Header>
           <Modal.Body>
             <Form>
+                {/* can i make renderStep its own component? */}
               { renderStep() }
             </Form>
           </Modal.Body>

@@ -3,13 +3,15 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-// import Goal from './Goal';
 import AddGoal from './AddGoal';
 
-function LeftInterface() {
-   const [ goals, setGoals ] = useState([])
+const LeftInterface = () => {
+   const [ goals, setGoals ] = useState(null)
+   
    console.log("GOALS IN LEFT INT: ", goals)
-  const goal = [
+  
+   //placeholder
+   const goal = [
     <ul>
       <li>Be debt-free in X yearss</li>
       <li>Make bigger payments on outstanding debt</li>
@@ -26,6 +28,8 @@ function LeftInterface() {
     <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row>
+          {/* loop should start here and render the goal list */}
+
           <Col sm={3}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
