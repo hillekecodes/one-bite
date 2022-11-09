@@ -25,6 +25,13 @@ const AddGoal = (props) => {
         ...props.goals,
         [modalGoal]: [],
       })
+      setWasNoClicked(false)
+      setStep(2)
+    }
+
+    const handleNextStep = () => {
+    //this needs to add a step to the current modalGoal's array, not create another modalGoal
+      setWasNoClicked(false)
       setStep(2)
     }
 
@@ -35,20 +42,20 @@ const AddGoal = (props) => {
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Main Goal</Form.Label>
           <Form.Control
-            onChange={(e) => setModalGoal(e.target.value)}
-            value={modalGoal}
-            type="text"
-            placeholder="Your goal here..."
-            autoFocus
-          />
+                onChange={(e) => setModalGoal(e.target.value)}
+                value={modalGoal}
+                type="text"
+                placeholder="Your goal here..."
+                autoFocus
+            />
            <Modal.Footer>
-        <Button variant="secondary" onClick={(() => setShow(false))}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleSave}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
+                <Button variant="secondary" onClick={(() => setShow(false))}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleSave}>
+                    Save Changes
+                </Button>
+            </Modal.Footer>
         </Form.Group>
         )
       }
@@ -56,10 +63,29 @@ const AddGoal = (props) => {
       if (step === 2 && !doIt) {
         if(wasNoClicked){
             // most important next step stuff here
+            return(
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>What is the most important next step to accomplish that goal?</Form.Label>
+                    <Form.Control
+                        onChange={(e) => setModalGoal(e.target.value)}
+                        value={modalGoal}
+                        type="text"
+                        placeholder="Your next step here..."
+                        autoFocus
+                    />
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={(() => setShow(false))}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleNextStep}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Form.Group>
+            )
         } else{
             return (
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>{ modalGoal }</Form.Label>
                     <Form.Label>Can you do this now?</Form.Label>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setWasNoClicked(true)}>
@@ -87,7 +113,7 @@ const AddGoal = (props) => {
             backdrop="static"    
         >
           <Modal.Header closeButton>
-            <Modal.Title>What is your Goal?</Modal.Title>
+            <Modal.Title>{props.goals ? Object.keys(props.goals)[0]: 'What is your Goal?'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
