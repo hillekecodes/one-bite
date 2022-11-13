@@ -5,39 +5,46 @@ import Modal from 'react-bootstrap/Modal';
 
 const AddGoal = (props) => {
     const [ show, setShow ] = useState(false);
-    const [ step, setStep ] = useState(1)
+    const [ page, setPage ] = useState(1)
     const [ modalGoal, setModalGoal ] = useState('')
     const [ doIt, setDoIt ] = useState(false)
     const [ wasNoClicked, setWasNoClicked] = useState(false)
-    
+    const [ nextStep, setNextStep ] = useState('')
+
     useEffect(() => {
         if(doIt) {
             setShow(false)
-            setStep(1)
+            setPage(1)
             setModalGoal('');
         }
     }, [doIt]) 
 
 
     const handleSave = () => {
-      console.log(modalGoal);
+      console.log('modalGoal inside handleSave', modalGoal);
       props.setGoals({
         ...props.goals,
         [modalGoal]: [],
       })
       setWasNoClicked(false)
-      setStep(2)
+      setPage(2)
+      setDoIt(false)
     }
 
     const handleNextStep = () => {
-    //this needs to add a step to the current modalGoal's array, not create another modalGoal
+      console.log('nextStep inside handleNextStep', nextStep)
+      let goalsCopy = {
+        ...props.goals
+      };
+      goalsCopy[modalGoal].push(nextStep);
+      props.setGoals(goalsCopy);
       setWasNoClicked(false)
-      setStep(2)
+      setPage(2)
+      setNextStep('');
     }
 
-
     const renderStep = () => {
-      if (step === 1) {
+      if (page === 1) {
         return (
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Main Goal</Form.Label>
@@ -60,15 +67,14 @@ const AddGoal = (props) => {
         )
       }
 //ELSE...
-      if (step === 2 && !doIt) {
+      if (page === 2 && !doIt) {
         if(wasNoClicked){
-            // most important next step stuff here
-            return(
+          return(
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>What is the most important next step to accomplish that goal?</Form.Label>
                     <Form.Control
-                        onChange={(e) => setModalGoal(e.target.value)}
-                        value={modalGoal}
+                        onChange={(e) => setNextStep(e.target.value)}
+                        value={nextStep}
                         type="text"
                         placeholder="Your next step here..."
                         autoFocus
@@ -106,7 +112,6 @@ const AddGoal = (props) => {
         <Button variant="light" onClick={() => setShow(true)}>
           + Add a Goal
         </Button>
-  
         <Modal 
             show={show} 
             onHide={() => setShow(false)}
@@ -136,7 +141,7 @@ export default AddGoal;
 
 // function AddGoal() {
 //     const [ show, setShow ] = useState(false);
-//     const [ steps, setSteps ] = useState([])
+//     const [ steps, setPages ] = useState([])
 
 
 //     const handleClose = () => setShow(false);
