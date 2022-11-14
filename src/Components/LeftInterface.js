@@ -16,14 +16,15 @@ const LeftInterface = () => {
 //editGoal
 //add context
 //user authentication, sort of tied to context
+//sign in modal, (need SM buttons, register button)
 
 //NEED TO START
 //put the focus on the next step(accordian the others?)
-//build logIn and createNewUser functionality and tie to storage
+//build createNewUser functionality and tie user info to storage
 //implement local storage
 //add routes
 //make it purdy
-//fix title of modal to be the previous step
+//fix title of AddGoal modal to be the previous step
 
 let goalList = Object.keys(goals).map(goal => {return [goal]});
 
