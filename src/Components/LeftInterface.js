@@ -10,17 +10,22 @@ const LeftInterface = () => {
    const [ goals, setGoals ] = useState({
     exampleGoal:['first step', 'second step', 'third step']
    })
-   let goalList = Object.keys(goals).map(goal => {return [goal]});
 
-
-//remove a step
-//edit a goal
-//put the focus on the next step(accordian), possibly with a title
-//add log-in functionality and tie to storage
-//implement storage feature
+//IN PROGRESS
+//removeStep isn't working
+//editGoal
 //add context
+//user authentication, sort of tied to context
+
+//NEED TO START
+//put the focus on the next step(accordian the others?)
+//build logIn and createNewUser functionality and tie to storage
+//implement local storage
 //add routes
-//make it attractive
+//make it purdy
+//fix title of modal to be the previous step
+
+let goalList = Object.keys(goals).map(goal => {return [goal]});
 
 const removeStep = (id) => {
   console.log('removeStep')
@@ -49,7 +54,6 @@ const editGoal = (key) => {
                 </Col>
                 <Col sm={9}>
                   <Tab.Content>
-                    {/* display goal list */}
                     <Tab.Pane eventKey={goal}>
                       <ul dangerouslySetInnerHTML={{__html: 
                             goals[goal].map(step => `
