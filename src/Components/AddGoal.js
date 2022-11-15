@@ -19,6 +19,10 @@ const AddGoal = (props) => {
         }
     }, [doIt]) 
 
+    // useEffect(() => {
+    //   localStorage.('goals', goalArr)
+    // }, [the goal array])
+
 
     const handleSave = () => {
       console.log('modalGoal inside handleSave', modalGoal);

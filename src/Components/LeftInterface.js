@@ -7,6 +7,7 @@ import AddGoal from './AddGoal';
 
 
 const LeftInterface = () => {
+  // const localgoals = localStorage.getItem('goals)
    const [ goals, setGoals ] = useState({
     exampleGoal:['first step', 'second step', 'third step']
    })
@@ -26,12 +27,15 @@ const LeftInterface = () => {
 //make it purdy
 //fix title of AddGoal modal to be the previous step
 
-let goalList = Object.keys(goals).map(goal => {return [goal]});
+// let goalList = Object.keys(goals).map(goal => {return [goal]});
 
-const removeStep = (id) => {
-  console.log('removeStep')
-  const newGoals = goalList.filter((step) => step.id !== id);
-  setGoals(newGoals)
+const removeStep = (goal, step) => {
+  const filteredGoals = goals[goal].filter(x => x !== step)
+  const updatedGoals = goals
+  updatedGoals[goal] = filteredGoals
+  console.log("updatedGoals", updatedGoals)
+  setGoals(updatedGoals)
+  // localStorage.setItem('goals', updatedGoals)
 }
  
 const editGoal = (key) => {
@@ -39,6 +43,21 @@ const editGoal = (key) => {
   //open modal back up or edit in place?
 }
 
+console.log("goals", goals)
+console.log("Object.keys(goals).length", Object.keys(goals).length)
+
+
+// [
+//   0: "first step",
+//   1: "second step",
+//   2: "third step",
+// ]
+
+// [
+  //   { id: "first step" value: "first step" },
+  //   1: "second step",
+  //   2: "third step",
+  // ]
 
   return (
     <>
@@ -53,14 +72,25 @@ const editGoal = (key) => {
                     </Nav.Item>
                   </Nav>
                 </Col>
+                {/* make a new component or f() */}
+                {/* { renderSteps(goals) } */}
                 <Col sm={9}>
                   <Tab.Content>
                     <Tab.Pane eventKey={goal}>
-                      <ul dangerouslySetInnerHTML={{__html: 
+                      {/* <ul dangerouslySetInnerHTML={{__html: 
                             goals[goal].map(step => `
                               <li id=${step}>${step}</li>`).join('')
-                              // <button type="button" onClick={removeStep}>X</button>
+                              <button type="button" onClick={removeStep}>X</button>
                             }} >
+                      </ul> */}
+                      <ul>
+                        { Object.keys(goals).length ? goals[goal].map(step => {
+                          return (
+                            <li key={step} id={step}>{step}
+                            <button type="button" onClick={() => removeStep(goal, step)}>X</button></li>
+                          )
+                
+                        }) : 'No goals yet' }
                       </ul>
                       {/* <button onClick={editGoal}>Edit</button> */}
                     </Tab.Pane>

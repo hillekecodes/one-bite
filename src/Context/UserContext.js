@@ -5,15 +5,18 @@ export const CurrentUserContext = React.createContext()
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null)
 
-//IF USER DATA WERE IN A DB
-//   const fetchCurrentUser = async () => {
-//     let response = await fetch("/api/users/current")
-//     response = await response.json()
-//     setCurrentUser(response)
-//   }
+const actions = {
+  // list all shared functions here
+  setCurrentUser
+}
+
+const state = {
+  // list all state values,
+  currentUser
+}
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+    <CurrentUserContext.Provider value={{ state, actions }}>
       {children}
     </CurrentUserContext.Provider>
   )
