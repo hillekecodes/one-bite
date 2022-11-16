@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import App from '../App';
 
 export const CurrentUserContext = React.createContext()
 
-export const CurrentUserProvider = ({ children }) => {
+export default function CurrentUserProvider () {
   const [currentUser, setCurrentUser] = useState(null)
 
-const actions = {
-  // list all shared functions here
-  setCurrentUser
-}
+  const actions = {
+    // list all shared functions here
+    setCurrentUser
+  }
 
-const state = {
-  // list all state values,
-  currentUser
-}
+  const state = {
+    // list all state values,
+    currentUser
+  }
 
   return (
     <CurrentUserContext.Provider value={{ state, actions }}>
-      {children}
+      <App />
     </CurrentUserContext.Provider>
   )
 }
