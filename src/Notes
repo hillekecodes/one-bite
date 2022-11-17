@@ -1,0 +1,16 @@
+
+//IN PROGRESS
+//editGoal
+//add context
+//user authentication, sort of tied to context
+//sign in modal needs SM buttons and register button
+
+//have a landing page that explains the concept
+//and invites user to log in or create a profile
+//use routes to make that happen
+
+//NEED TO START
+//put the focus on the next step(accordian the others?)
+//add routes
+//make it purdy
+//fix title of AddGoal modal to be the previous step

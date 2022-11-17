@@ -20,7 +20,7 @@ function Navigation() {
   return (
       <Navbar bg="light" expand="lg">
         <Container>
-        <Navbar.Brand href="#home"><strong>One Bite</strong></Navbar.Brand>
+        <Navbar.Brand href="/"><strong>One Bite</strong></Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>

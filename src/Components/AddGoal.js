@@ -130,7 +130,6 @@ const AddGoal = (props) => {
               { renderStep() }
             </Form>
           </Modal.Body>
-          
         </Modal>
       </>
     );

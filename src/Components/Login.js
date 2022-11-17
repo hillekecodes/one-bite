@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setShow(true)}>
+      <Button variant="secondary" onClick={() => setShow(true)}>
         Sign in
       </Button>
       <Modal 
