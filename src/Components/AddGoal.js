@@ -113,7 +113,7 @@ const AddGoal = (props) => {
   
     return (
       <>
-        <Button variant="light" onClick={() => setShow(true)}>
+        <Button className="border border-dark" variant="light" onClick={() => setShow(true)}>
           + Add a Goal
         </Button>
         <Modal 

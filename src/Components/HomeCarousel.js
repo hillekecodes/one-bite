@@ -1,6 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
-import elephant from './Images/elephant.jpg';
+// import apple from './Images/apple.jpg';
 
 
 function HomeCarousel() {
@@ -33,7 +33,7 @@ function HomeCarousel() {
       <Carousel.Item className="carousel-photo">
         <img
           className="d-block w-100"
-          src={require("./Images/one.jpg")}
+          src={require("./Images/you.jpg")}
           alt="Third slide"
         />
 
