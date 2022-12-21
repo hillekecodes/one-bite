@@ -12,7 +12,7 @@
   
   .carousel-button{
     display:block;
-    width:50%;
+    width:40%;
     margin: 0 auto;
   }
 
@@ -39,4 +39,5 @@
 
   .carousel-caption-light{
     color:gray;
+    padding-top: .5rem;
   }
