@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/one-bite/static/css/main.4f73eb7c.css",
+    "main.js": "/one-bite/static/js/main.ee169915.js",
+    "static/media/elephant.jpg": "/one-bite/static/media/elephant.fb49df59c0b4995c2a11.jpg",
+    "static/media/clock.jpg": "/one-bite/static/media/clock.436f7a6e29958cd79b9d.jpg",
+    "static/media/background.jpg": "/one-bite/static/media/background.c5de9a91632f30e9ac70.jpg",
+    "static/media/you.jpg": "/one-bite/static/media/you.02f7d583762b48308b5f.jpg",
+    "index.html": "/one-bite/index.html",
+    "main.4f73eb7c.css.map": "/one-bite/static/css/main.4f73eb7c.css.map",
+    "main.ee169915.js.map": "/one-bite/static/js/main.ee169915.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4f73eb7c.css",
+    "static/js/main.ee169915.js"
+  ]
+}
